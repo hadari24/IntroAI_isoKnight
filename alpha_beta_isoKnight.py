@@ -1,13 +1,8 @@
 import math
 from email.errors import NonASCIILocalPartDefect
 
-import numpy as np
-from game_state import game_state
-import alpha_beta_isoKnight
-import minimax_isoKnight
 
 def alphabeta_max(current_game, alpha=-math.inf, beta=math.inf):
-    #add code here for alpha-beta
     if current_game.is_terminal():
         return current_game.get_score(), None
 
@@ -26,7 +21,6 @@ def alphabeta_max(current_game, alpha=-math.inf, beta=math.inf):
     return v, best_move
 
 def alphabeta_min(current_game, alpha=-math.inf, beta=math.inf):
-    #add code here for alpha-beta
     if current_game.is_terminal():
         return current_game.get_score(), None
     v = math.inf
@@ -54,7 +48,6 @@ def maximin(current_game, alpha=-math.inf, beta=math.inf):
         if v < mx:
             v = mx
             best_move = move
-        #add code here for alpha-beta algorithm
         alpha = max(alpha, v)
         if v >= beta:
             return v, None
@@ -72,7 +65,6 @@ def minimax(current_game, alpha=-math.inf, beta=math.inf):
         if v > mx:
             v = mx
             best_move = move
-        #add code here for alpha-beta algorithm
         beta = min(beta, v)
         if v <= alpha:
             return v, None
