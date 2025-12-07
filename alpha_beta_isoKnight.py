@@ -77,38 +77,3 @@ def minimax(current_game, alpha=-math.inf, beta=math.inf):
         if v <= alpha:
             return v, None
     return v, best_move
-
-def tests():
-    print("Test 1: Basic Alpha-Beta Test")
-    grid = np.zeros((3, 3), dtype=int)
-    state = game_state(grid, (0, 1), (2, 1), 1)
-    score, move = alpha_beta_isoKnight.alphabeta_max(state)
-    print(f"Score: {score}, Move found: {move is not None}")
-
-    # Test 2: Compare with minimax (should give same result)
-    print("\nTest 2: Alpha-Beta vs Minimax")
-    grid = np.zeros((3, 3), dtype=int)
-    state = game_state(grid, (0, 1), (2, 1), 1)
-    ab_score, _ = alpha_beta_isoKnight.alphabeta_max(state)
-    mm_score, _ = minimax_isoKnight.maximin(state)
-    print(f"Alpha-Beta: {ab_score}, Minimax: {mm_score}")
-    print(f"Match: {ab_score == mm_score}")
-
-    # Test 3: Test terminal state
-    print("\nTest 3: Terminal State")
-    grid = np.zeros((3, 3), dtype=int)
-    grid[0, 1] = 1
-    grid[2, 1] = 2
-    # Fill positions to create terminal state
-    for i in range(3):
-        for j in range(3):
-            if (i, j) != (0, 1) and (i, j) != (2, 1):
-                grid[i, j] = 1
-    state = game_state(grid, (0, 1), (2, 1), 1)
-    if state.is_terminal():
-        score, move = alpha_beta_isoKnight.alphabeta_max(state)
-        print(f"Terminal score: {score}")
-
-
-if __name__ == "__main__":
-    tests()
